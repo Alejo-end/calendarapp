@@ -37,7 +37,9 @@ for more information.
 
 # Technologies
 
-- [React.js](https://flutter.dev/) - React.js framework for web applications.
-- [Chakra](https://www.tensorflow.org/js?hl=es-419) - for the UI.
-- [Redux Toolkit](https://www.ecoinvent.org/home.html) - to siwplify redux implementation.
-- [Redux Saga](https://googlemaps.com/) - for async client side state management.
+- [React.js](hhttps://es.reactjs.org/) - React.js framework for web applications.
+- [Chakra](https://chakra-ui.com/) - for the UI.
+- [date-fns](https://date-fns.org/) - for the dates.
+- [Open Weather Map](https://home.openweathermap.org/) - for the dates.
+- [Redux Toolkit](https://redux-toolkit.js.org/) - to siwplify redux implementation.
+- [Redux Saga](https://redux-saga.js.org/) - for async client side state management.
