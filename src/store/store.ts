@@ -1,7 +1,7 @@
 import { all } from "@redux-saga/core/effects";
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import calendar from "../redux/reducer";
+import calendar from "../redux/reducers";
 import { calendarSagas } from "../redux/sagas";
 
 const sagaMiddleware = createSagaMiddleware();
