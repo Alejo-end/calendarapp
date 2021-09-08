@@ -1,21 +1,17 @@
 import React from "react";
 import { Grid, GridItem } from "@chakra-ui/layout";
-import { ChakraProvider, Flex, theme, Box } from "@chakra-ui/react";
-import { store } from "../store/store";
+import { Flex, Box, Button, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
-import {
-  useDispatch,
-  useSelector,
-  Provider as ReduxProvider,
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CalendarGrid } from "../components/CalendarGrid";
 import {
   calculateGrid,
   nextMonthClicked,
   previousMonthClicked,
-} from "../redux/reducer";
+} from "../redux/reducers/calendar";
 import { selectGridDays, selectVisibleMonth } from "../redux/selectors";
 import { CalendarConstants } from "../lib";
+import { Logo } from "../components/Logo";
 
 const Calendar = () => {
   const dispatch = useDispatch();
@@ -26,37 +22,46 @@ const Calendar = () => {
   }, [dispatch]);
 
   return (
-    <ReduxProvider store={store}>
-      <ChakraProvider theme={theme}>
-        <Grid>
-          <Flex>
-            <p>
+    <Grid px={10}>
+      <Flex width="100%" align="center" justify="center" my={5}>
+        <Logo />
+      </Flex>
+      <Grid templateColumns="repeat(2, 1fr)">
+        <Box>
+          <Flex width="100%" align="center" justify="center" my={5}>
+            <Text mx={5} fontWeight="600" fontSize="20px">
               {CalendarConstants.MONTH_INDEX_TO_NAME_MAP[visibleMonth.month]}
-            </p>
-            <p>{visibleMonth.year}</p>
+            </Text>
+            <Text mx={5} fontWeight="600" fontSize="20px">
+              {visibleMonth.year}
+            </Text>
+          </Flex>
+          <Flex width="100%" justify="center" justifyContent="space-evenly">
+            <Button
+              onClick={() => {
+                dispatch(previousMonthClicked());
+              }}
+            >
+              {"⬅"}
+            </Button>
+            <Button
+              onClick={() => {
+                dispatch(nextMonthClicked());
+              }}
+            >
+              {"➡"}
+            </Button>
           </Flex>
           <Box>
-            <Flex>
-              <button
-                onClick={() => {
-                  dispatch(previousMonthClicked());
-                }}
-              >
-                {"<"}
-              </button>
-              <button
-                onClick={() => {
-                  dispatch(nextMonthClicked());
-                }}
-              >
-                {">"}
-              </button>
-            </Flex>
             <Grid templateColumns="repeat(7, 1fr)" gap={6}>
               {CalendarConstants.WEEKDAYS.map((weekday) => (
                 <GridItem
                   key={weekday}
-                  style={{ color: "yellowgreen", textTransform: "uppercase" }}
+                  color="black"
+                  textTransform="uppercase"
+                  fontWeight="700"
+                  textAlign="center"
+                  p={2}
                 >
                   <span>{weekday}</span>
                 </GridItem>
@@ -65,9 +70,9 @@ const Calendar = () => {
 
             <CalendarGrid days={days} />
           </Box>
-        </Grid>
-      </ChakraProvider>
-    </ReduxProvider>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 
