@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Flex, Badge } from "@chakra-ui/react";
+import { Box, Text, Badge, VStack } from "@chakra-ui/react";
 import { Day as DayType, Reminder } from "../typings/index";
 
 type Props = {
@@ -22,6 +22,7 @@ const _Day: React.FC<Props> = ({
   <Box
     p={"0.5em"}
     position="relative"
+    minH="100px"
     w="180px"
     borderLeftRadius="lg"
     borderBottomRightRadius="lg"
@@ -69,20 +70,10 @@ const _Day: React.FC<Props> = ({
     >
       {day}
     </Box>
-    <Text
-      mt={2}
-      fontSize="4xl"
-      fontWeight="bold"
-      lineHeight="short"
-      textAlign="center"
-    >
-      {
-        ["⛈", "🌧", "🌦", "☁", "🌩", "🌥", "⛅", "🌤", "☀"][
-          Math.floor(Math.random() * 9)
-        ]
-      }
-    </Text>
-    <Flex mt={2} justify="center" align="center">
+    <VStack m={2} justify="center" align="center">
+      <Text fontWeight="600" fontSize="20px">
+        Reminders:
+      </Text>
       <Badge
         borderRadius="md"
         colorScheme={
@@ -95,11 +86,9 @@ const _Day: React.FC<Props> = ({
             : "green"
         }
       >
-        <Text fontSize="20">
-          {[5, 2, 2, 1, 9, 0][Math.floor(Math.random() * 6)]}
-        </Text>
+        <Text fontSize="20">{reminders.length}</Text>
       </Badge>
-    </Flex>
+    </VStack>
   </Box>
 );
 

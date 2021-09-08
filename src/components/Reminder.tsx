@@ -1,6 +1,6 @@
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { /* useSelector, */ useDispatch } from "react-redux";
 import {
   DeleteReminderDto,
   Reminder as ReminderType,
