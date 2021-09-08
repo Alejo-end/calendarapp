@@ -5,13 +5,16 @@ import { useLocation } from "react-router-dom";
 import Readme from "../components/Readme";
 import { Route, Switch, Link } from "react-router-dom";
 import Calendar from "./Calendar";
+import { Logo } from "../components/Logo";
 
 export const App = () => {
   let location = useLocation();
   return (
     <ChakraProvider theme={theme}>
-      <ColorModeSwitcher />
-
+      <Flex justifyContent="space-between" p={5}>
+        <ColorModeSwitcher />
+        <Logo />
+      </Flex>
       <VStack>
         <Box>
           <Flex align="center" justify="space-evenly" width="15%" m="auto">

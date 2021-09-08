@@ -8,10 +8,10 @@ import {
   calculateGrid,
   nextMonthClicked,
   previousMonthClicked,
-} from "../redux/reducers/calendar";
+} from "../redux/reducers";
 import { selectGridDays, selectVisibleMonth } from "../redux/selectors";
 import { CalendarConstants } from "../lib";
-import { Logo } from "../components/Logo";
+import { NewReminderForm } from "../components/NewReminderForm";
 
 const Calendar = () => {
   const dispatch = useDispatch();
@@ -23,9 +23,6 @@ const Calendar = () => {
 
   return (
     <Grid px={10}>
-      <Flex width="100%" align="center" justify="center" my={5}>
-        <Logo />
-      </Flex>
       <Grid templateColumns="repeat(2, 1fr)">
         <Box>
           <Flex width="100%" align="center" justify="center" my={5}>
@@ -71,6 +68,9 @@ const Calendar = () => {
             <CalendarGrid days={days} />
           </Box>
         </Box>
+        <Flex width="100%" justify="center" justifyContent="center" pl={10}>
+          <NewReminderForm />
+        </Flex>
       </Grid>
     </Grid>
   );
