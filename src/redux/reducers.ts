@@ -8,6 +8,7 @@ import {
   CalendarState,
   CreateReminderDto,
   Day,
+  UpdateReminderDto,
   DeleteReminderDto,
   Grid,
   Reminder,
@@ -102,6 +103,18 @@ export const calendarSlice = createSlice({
         }
       );
     },
+    editReminderClicked: (state, event: PayloadAction<UpdateReminderDto>) => {
+      if (state.remindersByDate[event.payload.date]) {
+        state.remindersByDate[event.payload.date] =
+          remindersMetaAdapter.updateOne(
+            state.remindersByDate[event.payload.date],
+            {
+              id: event.payload.reminderId,
+              changes: event.payload.data,
+            }
+          );
+      }
+    },
     reminderDeleteClicked: (state, event: PayloadAction<DeleteReminderDto>) => {
       if (state.remindersByDate[event.payload.date]) {
         state.remindersByDate[event.payload.date] =
@@ -121,6 +134,7 @@ export const {
   previousMonthClicked,
   nextMonthClicked,
   newReminderFormSubmitted,
+  editReminderClicked,
   reminderDeleteClicked,
 } = calendarSlice.actions;
 

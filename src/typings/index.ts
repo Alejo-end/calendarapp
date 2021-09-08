@@ -30,7 +30,6 @@ export interface Reminder {
   id: string;
   text: string;
   city: string;
-  time: string;
   isCompleted: boolean;
   hour: number;
 }
@@ -40,7 +39,13 @@ export interface RemindersByDate {
 }
 
 export type CreateReminderDto = {
-  data: Pick<Reminder, "text" | "time" | "city" | "hour">;
+  data: Pick<Reminder, "text" | "city" | "hour">;
+  date: string;
+};
+
+export type UpdateReminderDto = {
+  data: Pick<Reminder, "text" | "city" | "hour" | "isCompleted">;
+  reminderId: string;
   date: string;
 };
 

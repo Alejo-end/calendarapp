@@ -9,7 +9,7 @@ import {
   gridCalculated,
   nextMonthClicked,
   previousMonthClicked,
-} from "./reducers/calendar";
+} from "./reducers";
 
 function* _calculateGrid(
   event: PayloadAction<unknown>
