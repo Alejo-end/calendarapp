@@ -4,8 +4,13 @@ import ReactMarkdown from "react-markdown";
 const README_PATH =
   "https://raw.githubusercontent.com/Jobsity/ReactChallenge/main/README.md";
 
-function Readme() {
-  const [md, setMd] = useState(null);
+interface ReadmeProps {
+  readme: string;
+  match: any;
+}
+
+function Readme(props: ReadmeProps) {
+  const [md, setMd] = useState("");
 
   useEffect(() => {
     fetch(README_PATH, { mode: "cors" })
@@ -17,7 +22,7 @@ function Readme() {
 
   return (
     <div className="readme">
-      <ReactMarkdown allowDangerousHtml children={md} />
+      <ReactMarkdown children={md} />
       {md && (
         <>
           <h2>Use our existing route to create you calendar!</h2>
