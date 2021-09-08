@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Text, Flex, Badge } from "@chakra-ui/react";
-import { Day as DayType } from "../typings/index";
-/* import { ToDo as ToDoType } from "../typings/index"; */
+import { Day as DayType, Reminder } from "../typings/index";
 
 type Props = {
-  onClick: (day: DayType /* , todos: ToDoType[] */) => void;
+  onClick: (day: DayType) => void;
   isPresentDay: boolean;
   isSelectedDay: boolean;
+  reminders: Reminder[];
 } & DayType;
 
 const _Day: React.FC<Props> = ({
@@ -16,7 +16,7 @@ const _Day: React.FC<Props> = ({
   isPadding,
   isPresentDay,
   isSelectedDay,
-  /* todos, */
+  reminders,
   onClick,
 }) => (
   <Box
