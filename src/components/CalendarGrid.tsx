@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Table, Thead, Tbody, Th, Tr, Td, Grid, GridItem, useDisclosure, Modal, ModalBody, ModalContent, ModalCloseButton, ModalOverlay, ModalHeader, ModalFooter, Button } from "@chakra-ui/react";
+import { Box, Table, Tbody, Tr, Grid, GridItem, useDisclosure, Modal, ModalBody, ModalContent, ModalCloseButton, ModalOverlay, ModalHeader, ModalFooter, Button } from "@chakra-ui/react";
 import { dayClicked, remindersMetaAdapter } from "../redux/reducers";
 import { Day as DayType, Reminder } from "../typings";
 import { Day } from "./Day";
 import { selectReminders, selectSelectedDate } from "../redux/selectors";
 import { CalendarUtils } from "../lib";
-//import ReminderItem from "./Reminder";
+import ReminderItem from "./Reminder";
 
 type Props = { days: DayType[] };
 
@@ -23,12 +23,6 @@ export const CalendarGrid: React.FC<Props> = ({ days }) => {
       const reminders = remindersByDate[date]['entities']
       const values = Object.values(reminders)
       setReminders(values)
-      //Method
-      values.map(value => (
-          console.log(value?.text, value?.city, value?.hour)
-        )
-      )
-      //Necesito guardar esa data en algun sitio accesible desde la tabla
       onOpen()
     } else {
       console.log("No reminders available")
@@ -58,20 +52,22 @@ export const CalendarGrid: React.FC<Props> = ({ days }) => {
         <ModalBody fontSize="3xl" fontFamily="Times New Roman">
         <Box mt={5} mb={10}>
           <Table variant="striped" colorScheme="blackAlpha">
-            <Thead>
+            {/*<Thead>
               <Tr>
                 <Th textAlign="center">Text</Th>
                 <Th textAlign="center">City</Th>
                 <Th textAlign="center">Time</Th>
               </Tr>
-            </Thead>
+            </Thead>*/}
             <Tbody>
                 {reminders ? reminders.map(reminder => (
                 <Tr key={reminder.id}>
-                  <Td textAlign="center">{reminder.text}</Td>
-                  <Td textAlign="center">{reminder.city}</Td>
-                  <Td textAlign="center">{reminder.hour}</Td>
-                  {/*<ReminderItem reminder={{}} />*/}
+                  <ReminderItem 
+                  id={reminder.id} 
+                  text={reminder.text} 
+                  city={reminder.city} 
+                  isCompleted={reminder.isCompleted} 
+                  hour={reminder.hour}/>
                 </Tr>
                 )) : null}
             </Tbody>    

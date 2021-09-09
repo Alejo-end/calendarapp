@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Text, Image } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { /* useSelector, */ useDispatch } from "react-redux";
 import {
@@ -11,27 +11,27 @@ import { reminderDeleteClicked, editReminderClicked } from "../redux/reducers";
 //import { selectSelectedDate } from "../redux/selectors";
 const API_KEY = "60cea64e4f08433d8f5bd513354e4c69";
 
-type Props = {
-  reminder: ReminderType;
-  completed: boolean;
-};
 
-const _Reminder: React.FC<Props> = ({ reminder }: Props) => {
+const _Reminder: React.FC<ReminderType> = ({id, text, city, isCompleted, hour}) => {
   const dispatch = useDispatch();
   //const selectedDate = useSelector(selectSelectedDate);
-  const [weather, setWeather] = useState<any>({});
+  const [icon, setIcon] = useState<any>({});
 
   useEffect(() => {
     const fetchWeather = async () => {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${reminder.city}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
       );
 
       const data = await response.json();
-      setWeather(data.weather);
+      console.log(data)
+      console.log(data.weather)
+      data.weather.map(value => (
+        setIcon(value.icon)
+      ))
     };
     fetchWeather();
-  }, [reminder.city]);
+  }, [city]);
 
   const handleDelete = async (reminder: DeleteReminderDto) => {
     dispatch(reminderDeleteClicked(reminder));
@@ -43,21 +43,22 @@ const _Reminder: React.FC<Props> = ({ reminder }: Props) => {
 
   return (
     <Box rounded={10} borderWidth="1px" borderColor="gray.200" p={4}>
-      <HStack spacing={4}>
+      <HStack spacing={5} w="100%" justifyContent="center">
+        {/*<Icon>
+          <Text fontSize="xl">{icon}</Text>
+        </Icon>*/}
+        <Image src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
         <Box>
-          <Text fontSize="xl">{weather.icon}</Text>
+          <Text fontSize="xl">{city}</Text>
         </Box>
         <Box>
-          <Text fontSize="xl">{reminder.city}</Text>
+          <Text fontSize="xl">{text}</Text>
         </Box>
         <Box>
-          <Text fontSize="xl">{reminder.text}</Text>
+          <Text fontSize="xl">{hour}</Text>
         </Box>
         <Box>
-          <Text fontSize="xl">{reminder.id}</Text>
-        </Box>
-        <Box>
-          <HStack spacing={4}>
+          <HStack spacing={5}>
             <Button rightIcon={<MdEdit />} onClick={() => handleEdit}>
               Edit
             </Button>
