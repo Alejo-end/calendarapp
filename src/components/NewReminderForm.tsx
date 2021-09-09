@@ -1,4 +1,4 @@
-import { FormControl, Input, VStack } from "@chakra-ui/react";
+import { FormControl, Input, VStack, Button } from "@chakra-ui/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { newReminderFormSubmitted } from "../redux/reducers";
@@ -28,7 +28,7 @@ export const NewReminderForm: React.FC = () => {
 
   const handleSumbit = (e: FormEvent) => {
     e.preventDefault();
-    if (dto.data.hour >= 0 && dto.data.hour <= 1439 && dto.data.text.trim()) {
+    if (dto.data.hour >= 0 && dto.data.hour <= 24 && dto.data.text.trim()) {
       dispatch(
         newReminderFormSubmitted({
           ...dto,
@@ -44,6 +44,7 @@ export const NewReminderForm: React.FC = () => {
         ...current,
         data: { hour: 0, text: "", city: "" },
       }));
+      
     } else {
       alert("Invalid DTO");
     }
@@ -52,7 +53,6 @@ export const NewReminderForm: React.FC = () => {
   return (
     <FormControl
       style={{ display: "flex", gap: "0.5rem" }}
-      onSubmit={handleSumbit}
     >
       <VStack align="center" justify="center" width="100%">
         <label htmlFor="text">Text</label>
@@ -77,8 +77,8 @@ export const NewReminderForm: React.FC = () => {
           onChange={handleChange}
           style={{ color: "black" }}
         />
+        <Button type="submit" onClick={handleSumbit} width="80%">Save</Button>
       </VStack>
-      <Input type="submit" style={{ display: "none" }} />
     </FormControl>
   );
 };

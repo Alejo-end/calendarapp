@@ -4,6 +4,7 @@ import { Flex, Box, Button, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CalendarGrid } from "../components/CalendarGrid";
+
 import {
   calculateGrid,
   nextMonthClicked,

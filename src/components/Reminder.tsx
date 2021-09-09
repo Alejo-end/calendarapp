@@ -28,7 +28,7 @@ const _Reminder: React.FC<Props> = ({ reminder }: Props) => {
       );
 
       const data = await response.json();
-      setWeather(data.weather[1]);
+      setWeather(data.weather);
     };
     fetchWeather();
   }, [reminder.city]);
@@ -45,7 +45,7 @@ const _Reminder: React.FC<Props> = ({ reminder }: Props) => {
     <Box rounded={10} borderWidth="1px" borderColor="gray.200" p={4}>
       <HStack spacing={4}>
         <Box>
-          <Text fontSize="xl">{weather}</Text>
+          <Text fontSize="xl">{weather.icon}</Text>
         </Box>
         <Box>
           <Text fontSize="xl">{reminder.city}</Text>
@@ -71,5 +71,5 @@ const _Reminder: React.FC<Props> = ({ reminder }: Props) => {
   );
 };
 
-export const Reminder = _Reminder;
-export default Reminder;
+export const ReminderItem = _Reminder;
+export default ReminderItem;
