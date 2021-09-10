@@ -1,4 +1,5 @@
-![image](https://user-images.githubusercontent.com/63655402/132704992-a7231fe1-202e-450a-834e-6c6c12ea56e6.png)
+![image](https://user-images.githubusercontent.com/63655402/132705980-82d3d7ef-fb0e-427a-8e0b-b4ce3139bf41.png)
+![image](https://user-images.githubusercontent.com/63655402/132742398-16963572-9743-4447-b788-7218f97bf0db.png)
 
 # Calendar App - ReactChallenge
 
